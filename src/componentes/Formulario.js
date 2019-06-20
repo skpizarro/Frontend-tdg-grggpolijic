@@ -1,6 +1,5 @@
 import React, { Component } from "react";
 import Error from "./Error";
-import Success from "./Success";
 import CodigoQR from "./CodigoQR";
 import "../css/Formulario.css";
 
@@ -52,8 +51,6 @@ export default class Formulario extends Component {
 
   crearUsuario = e => {
 
-    this.openModalHandler();
-
     e.preventDefault();
 
     const user = {
@@ -64,7 +61,7 @@ export default class Formulario extends Component {
       celular: this.state.celular,
       tipoPersona: this.state.tipoPersona,
       fecha: this.state.fecha,
-      morivoVisita: this.state.motivoVisita
+      motivoVisita: this.state.motivoVisita
     };
 
     this.props.agregarUsuario(user);
@@ -81,7 +78,6 @@ export default class Formulario extends Component {
       fecha,
       motivoVisita,
       error,
-      isShowing
     } = this.state;
 
     return (
@@ -190,9 +186,6 @@ export default class Formulario extends Component {
             Enviar
           </button>
         </form>
-      <Success
-      
-      />
       </div>
     );
   }

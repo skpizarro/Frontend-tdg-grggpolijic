@@ -10,11 +10,10 @@ export default class App extends Component {
  }
 
  agregarUsuario = user => {
-    const usuario = user;
-
+    console.log(user)
     //Ponerlo en el state
     this.setState({
-        user: usuario
+        user
     })
 
  }
