@@ -6,18 +6,17 @@ import React, { Component } from "react";
 
 export default class App extends Component {
  state = {
-     usuarios: {}
+     user: {}
  }
 
- agregarUsuario = usuario => {
-    const usuarios = usuario;
+ agregarUsuario = user => {
+    const usuario = user;
 
     //Ponerlo en el state
     this.setState({
-        usuarios
+        user: usuario
     })
 
-    console.log(usuarios);
  }
 
 
@@ -52,7 +51,6 @@ export default class App extends Component {
       <div className="App">
         <Header 
         agregarUsuario = {this.agregarUsuario}
-        usuarios = {this.state.usuarios}
         />
         <Footer />
       </div>

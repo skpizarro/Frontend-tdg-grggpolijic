@@ -5,7 +5,7 @@ import Formulario from "./Formulario";
 
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 
-const Header = ({agregarUsuario,usuarios}) => {
+const Header = ({agregarUsuario}) => {
   return (
     <Router>
       <header>
@@ -16,7 +16,6 @@ const Header = ({agregarUsuario,usuarios}) => {
           <Route path="/Formulario"  render={()=>(
             <Formulario
              agregarUsuario = {agregarUsuario}
-             usuarios={usuarios}
             />
           )}/>
         </Switch>

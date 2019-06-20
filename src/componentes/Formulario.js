@@ -3,44 +3,65 @@ import CodigoQR from "./CodigoQR";
 import "../css/Formulario.css";
 
 export default class Formulario extends Component {
-  //Manejo de los datos del formulario
 
-  //1. Crear los Refs y enlazarlos a los campos
-  nombreRef = React.createRef();
-  apellidoRef = React.createRef();
-  idRef = React.createRef();
-  emailRef = React.createRef();
-  celularRef = React.createRef();
-  tipoPersonaRef = React.createRef();
-  fechaRef = React.createRef();
-  motivoVisitaRef = React.createRef();
-
-  //2. Crear la funcion que se ejecuta al enviar el Form
-  capturarInfo = e => {
-    e.preventDefault();
-
-    //3. Crear el objeto
-    const usuario = {
-      nombre: this.nombreRef.current.value,
-      apellido: this.apellidoRef.current.value,
-      id: this.idRef.current.value,
-      email: this.emailRef.current.value,
-      celular: this.celularRef.current.value,
-      tipoPersona: this.tipoPersonaRef.current.value,
-      fecha: this.fechaRef.current.value,
-      motivoVisita: this.motivoVisitaRef.current.value
-    };
-
-    //4. Enviarlo al componente principal
-    this.props.agregarUsuario(usuario);
-    //Resetear el form
-    e.currentTarget.reset();
+  state = {
+    nombre: '',
+    apellido: '',
+    cedula: '',
+    email: '',
+    celular: '',
+    tipoPersona: '',
+    fecha: '',
+    motivoVisita: ''
   };
 
+
+  //Manejo de los datos del formulario
+
+  handlerInputText = ( e , keyText ) => {
+    const value = e.target.value;
+    this.setState({[ keyText ] : value })
+  };
+
+
+  handlerInputDate = ( e , keyText ) => {
+    let date = new Date();
+    const value = e.target.value.split("-");
+    
+  };
+
+  crearUsuario = e => {
+    e.preventDefault();
+
+    const user = {
+      nombre: this.state.nombre,
+      apellido: this.state.apellido,
+      cedula: this.state.cedula,
+      email: this.state.email,
+      celular: this.state.celular,
+      tipoPersona: this.state.tipoPersona,
+      fecha: this.state.fecha,
+      morivoVisita:this.state.motivoVisita
+    }
+
+    this.props.agregarUsuario(user)
+  }
+
   render() {
+    const {
+      nombre,
+      apellido,
+      cedula,
+      email,
+      celular,
+      tipoPersona,
+      fecha,
+      motivoVisita
+    } = this.state;
+
     return (
       <div>
-        <form className="formulario" onSubmit={this.capturarInfo}>
+        <form className="formulario" onSubmit={this.crearUsuario}>
           <div className="contenedor">
             <label>Nombre</label>
             <input
@@ -48,7 +69,8 @@ export default class Formulario extends Component {
               type="text"
               name="nombre"
               className="input_nombre"
-              ref={this.nombreRef}
+              onChange={e => this.handlerInputText(e,"nombre")}
+              value={nombre}
             />
           </div>
 
@@ -59,7 +81,8 @@ export default class Formulario extends Component {
               type="text"
               name="apellido"
               className="input_apellido"
-              ref={this.apellidoRef}
+              onChange={e => this.handlerInputText(e,"apellido")}
+              value={apellido}
             />
           </div>
 
@@ -67,43 +90,47 @@ export default class Formulario extends Component {
             <label>Documento de identidad</label>
             <input
               required
-              type="text"
+              type="number"
               name="cedula"
               className="input_cedula"
-              ref={this.idRef}
+              onChange={e => this.handlerInputText(e, "cedula")}
+              value={cedula}
             />
           </div>
 
           <div className="contenedor">
             <label>Email</label>
-            <input
-              required
-              type="email"
-              name="email"
+            <input 
+              required 
+              type="email" 
+              name="email" 
               className="input_email"
-              ref={this.emailRef}
-            />
+              onChange={e => this.handlerInputText(e,"email")}
+              value={email}
+              />
           </div>
 
           <div className="contenedor">
             <label>Celular</label>
             <input
               required
-              type="text"
+              type="number"
               name="celular"
               className="input_celular"
-              ref={this.celularRef}
+              onChange={e => this.handlerInputText(e,"celular")}
+              value={celular}
             />
           </div>
 
           <div className="contenedor">
             <label>Tipo de persona</label>
-            <select
-              required
-              name="tipopersona"
+            <select 
+              required 
+              name="tipopersona" 
               className="select_tipopersona"
-              ref={this.tipoPersonaRef}
-            >
+              onChange={e => this.handlerInputText(e,"tipoPersona")}
+              value={tipoPersona}
+              >
               <option value="vacio">Elige una opción</option>
               <option value="estudiante">Estudiante</option>
               <option value="empleado">Empleado</option>
@@ -112,13 +139,14 @@ export default class Formulario extends Component {
           </div>
           <div className="contenedor">
             <label>Fecha de visita</label>
-            <input
-              required
-              type="date"
-              name="fecha"
-              className="input_date"
-              ref={this.fechaRef}
-            />
+            <input 
+              required 
+              type="date" 
+              name="fecha" 
+              className="input_date" 
+              onChange={e => this.handlerInputDate(e,"fecha")}
+              value={fecha}
+              />
           </div>
           <div className="contenedor">
             <label>Motivo de la visita</label>
@@ -127,7 +155,8 @@ export default class Formulario extends Component {
               cols="30"
               rows="3"
               className="textarea_motivo"
-              ref={this.motivoVisitaRef}
+              onChange={e => this.handlerInputText(e,"motivoVisita")}
+              value={motivoVisita}
             />
           </div>
 
@@ -135,9 +164,9 @@ export default class Formulario extends Component {
             Enviar
           </button>
         </form>
-        <CodigoQR
+        {/* <CodigoQR
          usuarios={this.props.usuarios}
-        />
+        /> */}
       </div>
     );
   }
