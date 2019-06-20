@@ -1,0 +1,11 @@
+.Error_container{
+    background: #fc4a4a;
+
+    border-radius: 15px;}
+
+.Error{
+    font-weight: bold;
+    letter-spacing: 2px;
+    text-align: center;
+    padding: 10px;
+}

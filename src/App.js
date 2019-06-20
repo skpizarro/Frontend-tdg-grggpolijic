@@ -23,7 +23,7 @@ export default class App extends Component {
  /**
   * ---------------------Front End---------------------------------------
   * 
-  * Diseño del header -- Cambiar a centrado con todo el fondo amarillo 
+  * Diseño del header -- Cambiar a centrado con todo el fondo amarillo OK
   * 
   * Modificar vista nosotros en la seccion titulo poner info de la granja 
   * Modificar captura de campos quitar Ref ---> poner Handler inputs //

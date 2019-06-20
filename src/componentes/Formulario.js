@@ -1,36 +1,59 @@
 import React, { Component } from "react";
+import Error from "./Error";
+import Success from "./Success";
 import CodigoQR from "./CodigoQR";
 import "../css/Formulario.css";
 
 export default class Formulario extends Component {
-
   state = {
-    nombre: '',
-    apellido: '',
-    cedula: '',
-    email: '',
-    celular: '',
-    tipoPersona: '',
-    fecha: '',
-    motivoVisita: ''
+    nombre: "",
+    apellido: "",
+    cedula: "",
+    email: "",
+    celular: "",
+    tipoPersona: "",
+    fecha: "",
+    motivoVisita: "",
+    error: false
   };
-
 
   //Manejo de los datos del formulario
 
-  handlerInputText = ( e , keyText ) => {
+  handlerInputText = (e, keyText) => {
     const value = e.target.value;
-    this.setState({[ keyText ] : value })
+    this.setState({ [keyText]: value });
   };
 
+  //Metodo para validar que la fecha sea correcta (>= Al dia de hoy)
 
-  handlerInputDate = ( e , keyText ) => {
+  handlerInputDate = (e, keyText) => {
     let date = new Date();
-    const value = e.target.value.split("-");
-    
+    const value = e.target.value;
+    const separatedDate = value.split("-");
+    const valueNumbers = separatedDate.map(x => parseInt(x));
+    console.log(valueNumbers);
+    console.log(date.getDate());
+
+    if (
+      valueNumbers[2] >= date.getDate() &&
+      valueNumbers[1] >= date.getMonth() &&
+      valueNumbers[0] >= date.getFullYear()
+    ) {
+      return this.setState({
+        fecha: value,
+        error: false
+      });
+    } else {
+      return this.setState({ error: true });
+    }
   };
+
+  //Metodo para crear el usuario
 
   crearUsuario = e => {
+
+    this.openModalHandler();
+
     e.preventDefault();
 
     const user = {
@@ -41,11 +64,11 @@ export default class Formulario extends Component {
       celular: this.state.celular,
       tipoPersona: this.state.tipoPersona,
       fecha: this.state.fecha,
-      morivoVisita:this.state.motivoVisita
-    }
+      morivoVisita: this.state.motivoVisita
+    };
 
-    this.props.agregarUsuario(user)
-  }
+    this.props.agregarUsuario(user);
+  };
 
   render() {
     const {
@@ -56,7 +79,9 @@ export default class Formulario extends Component {
       celular,
       tipoPersona,
       fecha,
-      motivoVisita
+      motivoVisita,
+      error,
+      isShowing
     } = this.state;
 
     return (
@@ -69,7 +94,7 @@ export default class Formulario extends Component {
               type="text"
               name="nombre"
               className="input_nombre"
-              onChange={e => this.handlerInputText(e,"nombre")}
+              onChange={e => this.handlerInputText(e, "nombre")}
               value={nombre}
             />
           </div>
@@ -81,7 +106,7 @@ export default class Formulario extends Component {
               type="text"
               name="apellido"
               className="input_apellido"
-              onChange={e => this.handlerInputText(e,"apellido")}
+              onChange={e => this.handlerInputText(e, "apellido")}
               value={apellido}
             />
           </div>
@@ -100,14 +125,14 @@ export default class Formulario extends Component {
 
           <div className="contenedor">
             <label>Email</label>
-            <input 
-              required 
-              type="email" 
-              name="email" 
+            <input
+              required
+              type="email"
+              name="email"
               className="input_email"
-              onChange={e => this.handlerInputText(e,"email")}
+              onChange={e => this.handlerInputText(e, "email")}
               value={email}
-              />
+            />
           </div>
 
           <div className="contenedor">
@@ -117,20 +142,20 @@ export default class Formulario extends Component {
               type="number"
               name="celular"
               className="input_celular"
-              onChange={e => this.handlerInputText(e,"celular")}
+              onChange={e => this.handlerInputText(e, "celular")}
               value={celular}
             />
           </div>
 
           <div className="contenedor">
             <label>Tipo de persona</label>
-            <select 
-              required 
-              name="tipopersona" 
+            <select
+              required
+              name="tipopersona"
               className="select_tipopersona"
-              onChange={e => this.handlerInputText(e,"tipoPersona")}
+              onChange={e => this.handlerInputText(e, "tipoPersona")}
               value={tipoPersona}
-              >
+            >
               <option value="vacio">Elige una opción</option>
               <option value="estudiante">Estudiante</option>
               <option value="empleado">Empleado</option>
@@ -139,15 +164,16 @@ export default class Formulario extends Component {
           </div>
           <div className="contenedor">
             <label>Fecha de visita</label>
-            <input 
-              required 
-              type="date" 
-              name="fecha" 
-              className="input_date" 
-              onChange={e => this.handlerInputDate(e,"fecha")}
+            <input
+              required
+              type="date"
+              name="fecha"
+              className="input_date"
+              onChange={e => this.handlerInputDate(e, "fecha")}
               value={fecha}
-              />
+            />
           </div>
+          {error ? <Error mensaje="Digite una Fecha Válida" /> : null}
           <div className="contenedor">
             <label>Motivo de la visita</label>
             <textarea
@@ -155,7 +181,7 @@ export default class Formulario extends Component {
               cols="30"
               rows="3"
               className="textarea_motivo"
-              onChange={e => this.handlerInputText(e,"motivoVisita")}
+              onChange={e => this.handlerInputText(e, "motivoVisita")}
               value={motivoVisita}
             />
           </div>
@@ -164,9 +190,9 @@ export default class Formulario extends Component {
             Enviar
           </button>
         </form>
-        {/* <CodigoQR
-         usuarios={this.props.usuarios}
-        /> */}
+      <Success
+      
+      />
       </div>
     );
   }

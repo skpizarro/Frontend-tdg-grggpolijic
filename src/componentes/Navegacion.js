@@ -7,7 +7,9 @@ import {Link} from 'react-router-dom';
 const Navegacion = () => {
     return ( 
         <nav className="navegacion">
-            <img src={image} alt=""/>
+            <div className="navegacion__img-container">
+                <img src={image} alt=""/>
+            </div>
                 <ul className="header__lista">
                     <Link to="/Nosotros">
                         <li className="header__lista-item">Nosotros</li>

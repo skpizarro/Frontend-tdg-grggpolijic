@@ -5,6 +5,10 @@
     margin: 50px;
 }
 
+
+.nosotros__location-title{
+    letter-spacing: 2px;
+}
 .nosotros_location{
     display: flex;
     justify-content: center;

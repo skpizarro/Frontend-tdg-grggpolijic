@@ -6,11 +6,19 @@ li{
 }
 
 
-img{
+.navegacion__img-container{
     width: 100%;
     background: rgb(234, 193, 0);
     margin-bottom: 0;
 }
+
+img{
+    width: 350px;
+    margin-left: auto;
+    margin-right: auto;
+    display: block;
+}
+
 
 a{
     text-decoration: none;
@@ -63,6 +71,10 @@ a{
 }
 
 @media only screen and (min-width: 768px){
+
+    img{
+        width: 600px;
+    }
     
     .header__lista-item{
         margin-right: 45px;
@@ -92,16 +104,15 @@ a{
 
     img{
         width: 600px;
-        height: 240px;
-        margin-bottom: 0;
+        /* height: 240px; */
+        /* margin-bottom: 0; */
     }
 }
 
 @media only screen and (min-width: 1440px){
     img{
-        width: 1050px;
-        height: 240px;
-        margin-bottom: 0;
+        width: 820px;
+        /* height: 240px; */
     }
     .header__lista-item{
         margin-right: 100px;
