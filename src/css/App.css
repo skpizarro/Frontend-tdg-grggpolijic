@@ -20,7 +20,7 @@ body{
     left: 0;
     right: 0;
     bottom: 0;
-    background: rgba(43, 22, 21, .75);
+    background: rgba(119, 112, 112, 0.75);
     z-index: 20;
     display: flex;
     justify-content: center;
