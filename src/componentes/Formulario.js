@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import Error from "./Error";
-import CodigoQR from "./CodigoQR";
+import {BASE_ENDPOINT} from '../constants';
+import axios from 'axios';
 import "../css/Formulario.css";
 
 export default class Formulario extends Component {
@@ -30,8 +31,6 @@ export default class Formulario extends Component {
     const value = e.target.value;
     const separatedDate = value.split("-");
     const valueNumbers = separatedDate.map(x => parseInt(x));
-    console.log(valueNumbers);
-    console.log(date.getDate());
 
     if (
       valueNumbers[2] >= date.getDate() &&
@@ -50,7 +49,7 @@ export default class Formulario extends Component {
   //Metodo para crear el usuario
 
   crearUsuario = e => {
-
+    this.props.handleOpenModal();
     e.preventDefault();
 
     const user = {
@@ -64,7 +63,37 @@ export default class Formulario extends Component {
       motivoVisita: this.state.motivoVisita
     };
 
-    this.props.agregarUsuario(user);
+    axios.post(`${BASE_ENDPOINT}/api/generateqr`, {user},
+    {
+      headers: { "Content-Type": "application/json"}
+    }).then( function (response){
+      console.log('respuesta',response)
+      
+    }).catch(function(error){
+      console.log(error)
+    })
+
+    // //  ---- CREAR REQUEST
+    // //headers
+    // var myHeaders = new Headers();
+    // myHeaders.append('Content-Type', 'application/json');
+
+    // //request config
+    // var myInit = {
+    //   method: 'POST',
+    //   body: JSON.stringify(user),
+    //   headers: myHeaders,
+    //   mode: 'cors',
+    //   cache: 'default'
+    // };
+    // var myRequest = new Request(`${BASE_ENDPOINT}/api/generateqr`, myInit);
+
+    // //enviar request
+    // fetch(myRequest).then(function (response) {
+    //   return response.json();
+    // }).then(function (myJson) {
+    //   console.log(myJson);
+    // });
   };
 
   render() {
@@ -86,7 +115,7 @@ export default class Formulario extends Component {
           <div className="contenedor">
             <label>Nombre</label>
             <input
-              required
+              // required
               type="text"
               name="nombre"
               className="input_nombre"
@@ -98,7 +127,7 @@ export default class Formulario extends Component {
           <div className="contenedor">
             <label>Apellido</label>
             <input
-              required
+              // required
               type="text"
               name="apellido"
               className="input_apellido"
@@ -110,7 +139,7 @@ export default class Formulario extends Component {
           <div className="contenedor">
             <label>Documento de identidad</label>
             <input
-              required
+              // required
               type="number"
               name="cedula"
               className="input_cedula"
@@ -122,7 +151,7 @@ export default class Formulario extends Component {
           <div className="contenedor">
             <label>Email</label>
             <input
-              required
+              // required
               type="email"
               name="email"
               className="input_email"
@@ -134,7 +163,7 @@ export default class Formulario extends Component {
           <div className="contenedor">
             <label>Celular</label>
             <input
-              required
+              // required
               type="number"
               name="celular"
               className="input_celular"
@@ -146,7 +175,7 @@ export default class Formulario extends Component {
           <div className="contenedor">
             <label>Tipo de persona</label>
             <select
-              required
+              // required
               name="tipopersona"
               className="select_tipopersona"
               onChange={e => this.handlerInputText(e, "tipoPersona")}
@@ -161,7 +190,7 @@ export default class Formulario extends Component {
           <div className="contenedor">
             <label>Fecha de visita</label>
             <input
-              required
+              // required
               type="date"
               name="fecha"
               className="input_date"
