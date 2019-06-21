@@ -20,7 +20,9 @@ export default class Formulario extends Component {
 
   handlerInputText = (e, keyText) => {
     const value = e.target.value;
-    this.setState({ [keyText]: value });
+    this.setState({
+      [keyText]: value
+    });
   };
 
   //Metodo para validar que la fecha sea correcta (>= Al dia de hoy)
@@ -33,11 +35,40 @@ export default class Formulario extends Component {
     console.log(valueNumbers);
     console.log(date.getDate());
 
-    if (
-      valueNumbers[2] >= date.getDate() &&
-      valueNumbers[1] >= date.getMonth() &&
-      valueNumbers[0] >= date.getFullYear()
-    ) {
+    // if (
+    //   valueNumbers[2] >= date.getDate() &&
+    //   valueNumbers[1] >= date.getMonth() &&
+    //   valueNumbers[0] >= date.getFullYear()
+    // ) {
+    //   return this.setState({
+    //     fecha: value,
+    //     error: false
+    //   });
+    // } else {
+    //   return this.setState({ error: true });
+    // }
+
+    if (valueNumbers[0] === date.getFullYear()) {
+      if (valueNumbers[1] === date.getMonth() + 1) {
+        if (valueNumbers[2] >= date.getDate()) {
+          console.log("Entre");
+          return this.setState({
+            fecha: value,
+            error: false
+          });
+        } else {
+          console.log("Entre 1");
+          return this.setState({ error: true });
+        }
+      } else if (valueNumbers[1] > date.getMonth()) {
+        return this.setState({
+          fecha: value,
+          error: false
+        });
+      } else {
+        return this.setState({ error: true });
+      }
+    } else if (valueNumbers[0] > date.getFullYear()) {
       return this.setState({
         fecha: value,
         error: false
@@ -50,7 +81,6 @@ export default class Formulario extends Component {
   //Metodo para crear el usuario
 
   crearUsuario = e => {
-
     e.preventDefault();
 
     const user = {
@@ -77,14 +107,14 @@ export default class Formulario extends Component {
       tipoPersona,
       fecha,
       motivoVisita,
-      error,
+      error
     } = this.state;
 
     return (
       <div>
         <form className="formulario" onSubmit={this.crearUsuario}>
           <div className="contenedor">
-            <label>Nombre</label>
+            <label> Nombre </label>{" "}
             <input
               required
               type="text"
@@ -92,11 +122,10 @@ export default class Formulario extends Component {
               className="input_nombre"
               onChange={e => this.handlerInputText(e, "nombre")}
               value={nombre}
-            />
+            />{" "}
           </div>
-
           <div className="contenedor">
-            <label>Apellido</label>
+            <label> Apellido </label>{" "}
             <input
               required
               type="text"
@@ -104,11 +133,10 @@ export default class Formulario extends Component {
               className="input_apellido"
               onChange={e => this.handlerInputText(e, "apellido")}
               value={apellido}
-            />
+            />{" "}
           </div>
-
           <div className="contenedor">
-            <label>Documento de identidad</label>
+            <label> Documento de identidad </label>{" "}
             <input
               required
               type="number"
@@ -116,11 +144,10 @@ export default class Formulario extends Component {
               className="input_cedula"
               onChange={e => this.handlerInputText(e, "cedula")}
               value={cedula}
-            />
+            />{" "}
           </div>
-
           <div className="contenedor">
-            <label>Email</label>
+            <label> Email </label>{" "}
             <input
               required
               type="email"
@@ -128,11 +155,10 @@ export default class Formulario extends Component {
               className="input_email"
               onChange={e => this.handlerInputText(e, "email")}
               value={email}
-            />
+            />{" "}
           </div>
-
           <div className="contenedor">
-            <label>Celular</label>
+            <label> Celular </label>{" "}
             <input
               required
               type="number"
@@ -140,11 +166,10 @@ export default class Formulario extends Component {
               className="input_celular"
               onChange={e => this.handlerInputText(e, "celular")}
               value={celular}
-            />
+            />{" "}
           </div>
-
           <div className="contenedor">
-            <label>Tipo de persona</label>
+            <label> Tipo de persona </label>{" "}
             <select
               required
               name="tipopersona"
@@ -152,14 +177,14 @@ export default class Formulario extends Component {
               onChange={e => this.handlerInputText(e, "tipoPersona")}
               value={tipoPersona}
             >
-              <option value="vacio">Elige una opción</option>
-              <option value="estudiante">Estudiante</option>
-              <option value="empleado">Empleado</option>
-              <option value="visitante">Visitante</option>
-            </select>
-          </div>
+              <option value="vacio"> Elige una opción </option>{" "}
+              <option value="estudiante"> Estudiante </option>{" "}
+              <option value="empleado"> Empleado </option>{" "}
+              <option value="visitante"> Visitante </option>{" "}
+            </select>{" "}
+          </div>{" "}
           <div className="contenedor">
-            <label>Fecha de visita</label>
+            <label> Fecha de visita </label>{" "}
             <input
               required
               type="date"
@@ -167,11 +192,11 @@ export default class Formulario extends Component {
               className="input_date"
               onChange={e => this.handlerInputDate(e, "fecha")}
               value={fecha}
-            />
-          </div>
-          {error ? <Error mensaje="Digite una Fecha Válida" /> : null}
+            />{" "}
+          </div>{" "}
+          {error ? <Error mensaje="Digite una Fecha Válida" /> : null}{" "}
           <div className="contenedor">
-            <label>Motivo de la visita</label>
+            <label> Motivo de la visita </label>{" "}
             <textarea
               name="motivovisita"
               cols="30"
@@ -179,13 +204,12 @@ export default class Formulario extends Component {
               className="textarea_motivo"
               onChange={e => this.handlerInputText(e, "motivoVisita")}
               value={motivoVisita}
-            />
+            />{" "}
           </div>
-
           <button type="submit" className="formulario__boton">
-            Enviar
-          </button>
-        </form>
+            Enviar{" "}
+          </button>{" "}
+        </form>{" "}
       </div>
     );
   }
