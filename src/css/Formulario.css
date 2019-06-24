@@ -6,6 +6,7 @@
 .contenedor{
     padding: 15px 10px;;
     display: flex;
+    flex-wrap: wrap;
     align-items: center;
     background: rgb(1, 122, 54);
     border-radius: 10px;
@@ -37,7 +38,7 @@
     flex: 1 1 190px;
     border: none;
     height: 25px;
-    padding: 5px;
+    padding: 1px;
     border-radius: 5px;
     font-size: 18px;
 }
