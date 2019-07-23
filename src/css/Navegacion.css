@@ -55,18 +55,13 @@ a {
   font-size: 19px;
 }
 
-.header__lista-item::after {
-  content: "";
-  display: block;
-  width: 0;
-  height: 3px;
-  background: rgb(234, 193, 0);
-  position: absolute;
-  transition: all 0.3s;
+.header__lista-item:hover {
+  color: rgb(234, 193, 0);
 }
 
-.header__lista-item:focus:after {
-  width: 100%;
+.active {
+  color: rgb(234, 193, 0);
+  font-weight: bold;
 }
 
 @media only screen and (min-width: 768px) {
