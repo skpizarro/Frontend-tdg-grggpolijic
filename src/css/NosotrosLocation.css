@@ -1,15 +1,15 @@
-.section_nosotrosloc{
-    background: white;
+.section_nosotrosloc {
+  background: white;
 }
-.section_container{
-    margin: 50px;
+.section_container {
+  margin: 50px;
 }
 
-
-.nosotros__location-title{
-    letter-spacing: 2px;
+.nosotros__location-title {
+  letter-spacing: 2px;
+  text-decoration: underline;
 }
-.nosotros_location{
-    display: flex;
-    justify-content: center;
+.nosotros_location {
+  display: flex;
+  justify-content: center;
 }

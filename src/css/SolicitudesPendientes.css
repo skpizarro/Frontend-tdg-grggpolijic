@@ -1,0 +1,17 @@
+.contenedor-solicitudes {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  min-height: 200px;
+  padding: 25px 0;
+  margin: 35px 0;
+}
+
+@media only screen and (min-width: 768px) {
+  .contenedor-solicitudes {
+    flex-direction: row;
+    justify-content: space-evenly;
+    flex-wrap: wrap;
+  }
+}

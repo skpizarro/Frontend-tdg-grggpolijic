@@ -1,0 +1,42 @@
+[class^="container-mensaje-"] {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 0 10%;
+  text-align: center;
+  border-radius: 10px;
+}
+
+[class^="container-mensaje-"] h2 {
+  color: white;
+  letter-spacing: 2px;
+  font-weight: bold;
+}
+
+.container-mensaje-normal {
+  background: rgba(0, 0, 0, 0.3);
+  min-height: 300px;
+}
+
+.container-mensaje-normal h2 {
+  font-size: 32px;
+}
+
+.container-mensaje-error {
+  background: rgba(255, 99, 71, 1);
+  min-height: 50px;
+}
+
+.container-mensaje-error h2 {
+  font-size: 18px;
+}
+
+.container-mensaje-solicitudes {
+  background: rgba(0, 0, 0, 0.3);
+  min-height: 400px;
+}
+
+.container-mensaje-solicitudes h2 {
+  font-size: 36px;
+}

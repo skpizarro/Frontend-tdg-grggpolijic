@@ -1,0 +1,34 @@
+.card-solicitud {
+  min-width: 320px;
+  padding: 25px 55px 40px;
+  background: rgba(255, 255, 255, 0.9);
+  margin-bottom: 40px;
+  transition: all 0.2s;
+  cursor: pointer;
+  width: 480px;
+  height: 290px;
+  border-radius: 10px;
+}
+
+.card-solicitud:hover {
+  box-shadow: 0px 0px 10px black;
+}
+
+.card-solicitud p {
+  font-weight: bold;
+  margin: 0;
+  padding: 10px 0;
+}
+
+.container-buttons {
+  padding: 35px 0;
+  display: flex;
+  margin-top: 5px;
+  justify-content: space-evenly;
+}
+
+@media only screen and(min-width: 1440px) {
+  .container-buttons {
+    margin-top: 5px;
+  }
+}

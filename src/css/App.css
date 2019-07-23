@@ -1,145 +1,159 @@
-*{
-    box-sizing: border-box;
+* {
+  box-sizing: border-box;
 }
 
-body{
-    max-width: 1024px;
-    min-width: 320px;
-    padding: 0;
-    margin-left: auto;
-    margin-right: auto;
-    background: whitesmoke;
+body {
+  max-width: 1440px;
+  min-width: 320px;
+  padding: 0;
+  margin-left: auto;
+  margin-right: auto;
+  background: whitesmoke;
 }
 
-body.active{
-    overflow-y: hidden;
+body.active {
+  overflow-y: hidden;
 }
 
-
-.App{
-    background: rgb(0, 146, 64);
+.App {
+  background: rgb(0, 146, 64);
 }
 
-.modal{
-    position: fixed;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    background: rgba(43, 43, 43, 0.75);
-    z-index: 20;
-    display: flex;
-    justify-content: center;
-    align-items: center;
+.modal {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(43, 43, 43, 0.75);
+  z-index: 20;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
-
-.form-general-modal{
-    background: rgb(0, 146, 64);
-    width: 600px;
-    max-height: 600px;
-    padding: 40px;
-    border-radius: 5px;
-    box-shadow: 0px 0px 7px white;
-    position: relative;
+.form-general-modal {
+  background: rgb(0, 146, 64);
+  width: 600px;
+  max-height: 600px;
+  padding: 40px;
+  border-radius: 5px;
+  box-shadow: 0px 0px 7px white;
+  position: relative;
+  color: black;
 }
 
-.title-tyc{
-    margin-top: 0;
-    color: white;
-    font-weight: lighter;
-    letter-spacing: 3px;
-    padding-bottom: 10px;
-    border-bottom: 1px solid black;;
+.title-tyc {
+  margin-top: 0;
+  color: white;
+  font-weight: lighter;
+  letter-spacing: 3px;
+  padding-bottom: 10px;
+  border-bottom: 1px solid black;
 }
 
-
-.container-tyc{
-    background: white;
-    overflow-y: scroll;
-    max-height: 400px;
-    padding: 0 20px 20px 20px;
-    text-align: justify;
-    border-radius: 2px;
+.container-tyc {
+  background: white;
+  overflow-y: scroll;
+  max-height: 400px;
+  padding: 0 20px 20px 20px;
+  text-align: justify;
+  border-radius: 2px;
 }
 
-.container-tyc p{
-    font-size: 14px;
+.container-tyc p {
+  font-size: 14px;
 }
 
-.container-tyc p strong{
-    font-size: 18px;
+.container-tyc p strong {
+  font-size: 18px;
 }
 
 .container-tyc p a {
-    font-size: 14px;
-} 
+  font-size: 14px;
+}
 .container-accpet {
-    display: flex;
-    flex-direction: column;
-    padding-top: 15px;
-    font-size: 18px;
+  display: flex;
+  flex-direction: column;
+  padding-top: 15px;
+  font-size: 18px;
 }
 
-.button-accpet{
-    padding: 10px;
-    background: white;
-    border: none;
-    margin-top: 5px;
-    border-radius: 7px;
-    box-shadow: 0px 0px 5px black;
-    letter-spacing: 3px;
-    cursor: pointer;
+.button-accpet {
+  padding: 10px;
+  background: white;
+  border: none;
+  margin-top: 5px;
+  border-radius: 7px;
+  box-shadow: 0px 0px 5px black;
+  letter-spacing: 3px;
+  cursor: pointer;
 }
 
-.button-accpet:hover{
-    background: rgb(218, 218, 218);
+.button-accpet:hover {
+  background: rgb(218, 218, 218);
 }
 
-.button-close{
-    position: absolute;
-    top:30px;
-    right:10px;
-    background: rgb(0, 100, 43);
-    border: none;
-    cursor: pointer;
-    box-shadow: 0px 0px 5px black;
-    border-radius:5px;
-    color: white;
+.button-close {
+  position: absolute;
+  top: 30px;
+  right: 10px;
+  background: rgb(0, 100, 43);
+  border: none;
+  cursor: pointer;
+  box-shadow: 0px 0px 5px black;
+  border-radius: 5px;
+  color: white;
 }
 
-.button-close:hover{
-    background: rgb(0, 131, 57);
-     
+.button-close:hover {
+  background: rgb(0, 131, 57);
 }
 
-@media only screen and (min-width: 375px){
-    .button-close{
-        top:30px;
-        right: 10px;
-    }
+@media only screen and (min-width: 375px) {
+  body {
+    width: 375px;
+  }
+
+  .button-close {
+    top: 30px;
+    right: 10px;
+  }
 }
 
-@media only screen and (min-width: 768px){
-    .button-close{
-        top:25px;
-        right: 90px;
-    }
+@media only screen and (min-width: 768px) {
+  body {
+    width: 763px;
+  }
+  .button-close {
+    top: 25px;
+    right: 90px;
+  }
 }
 
-
-
-@media only screen and (min-width: 1024px){
-    .button-close{
-        top:33px;
-        right: 400px;
-    }
+@media only screen and (min-width: 1024px) {
+  body {
+    width: 1019px;
+  }
+  .button-close {
+    top: 33px;
+    right: 220px;
+  }
 }
 
+@media only screen and (min-width: 1440px) {
+  body {
+    width: 1390px;
+  }
+  .button-close {
+    top: 25px;
+    right: 425px;
+  }
+}
 
-@media only screen and (min-width: 1440px){
-    .button-close{
-        top:25px;
-        right: 725px;
-    }
+@media only screen and (min-width: 1535px) {
+  .button-close {
+    top: 70px;
+    right: 475px;
+  }
 }
