@@ -79,7 +79,7 @@ export default class App extends Component {
 
   render() {
     const { showModal, showNavAdmin, user, acceptTerms } = this.state;
-    const switchClassModal = showModal ? "active" : "no-active";
+    const switchClassModal = showModal ? "active-body" : "no-active-body";
     const body = document.querySelector("#no-active");
     if (switchClassModal === "active") {
       body.className = "active";

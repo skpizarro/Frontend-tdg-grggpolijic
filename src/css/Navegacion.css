@@ -3,6 +3,8 @@ li {
   list-style: none;
   font-size: 14px;
   letter-spacing: 1.5px;
+  margin-bottom: 20px;
+  margin-top: 10px;
 }
 
 .navegacion__img-container {
@@ -28,7 +30,7 @@ a {
   display: flex;
   flex-direction: column;
   margin: 0;
-  padding: 20px 0;
+  padding: 25px;
   align-items: center;
   position: relative;
   background: rgb(1, 122, 54);
@@ -42,6 +44,7 @@ a {
   background: rgb(234, 193, 0);
   position: absolute;
   top: -3px;
+  left: 0px;
 }
 
 .header__lista-item {
@@ -72,23 +75,24 @@ a {
   .header__lista {
     flex-direction: row;
     justify-content: flex-end;
+    padding-left: 30px;
   }
 
   .header__lista-item {
-    margin-right: 45px;
+    margin-right: 13px;
     padding-top: 20px;
     padding-bottom: 5px;
     position: relative;
   }
 
   .header__lista::before {
-    top: -5px;
+    top: -8px;
   }
 }
 
 @media only screen and (min-width: 1024px) {
   .header__lista-item {
-    margin-right: 80px;
+    margin-right: 60px;
     padding-top: 20px;
     padding-bottom: 5px;
     position: relative;

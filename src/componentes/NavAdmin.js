@@ -25,6 +25,15 @@ const NavAdmin = ({ switchNavAdmin }) => {
       <li>
         <NavLink
           className="header__lista-item"
+          to="/Configuracion"
+          activeClassName="active"
+        >
+          Configuración
+        </NavLink>
+      </li>
+      <li>
+        <NavLink
+          className="header__lista-item"
           onClick={switchNavAdmin}
           to="/Ingresar"
           activeClassName="active"

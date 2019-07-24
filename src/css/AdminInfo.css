@@ -1,0 +1,76 @@
+.container-info-admin {
+  padding: 15px 0px 25px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  background: white;
+  margin-bottom: 10px;
+  border-radius: 10px;
+}
+
+.container-block-info {
+  margin-top: 15px;
+  margin-bottom: 25px;
+}
+
+.container-iput {
+  flex: 0 0 40px;
+}
+
+.container-iput label {
+  font-weight: bold;
+}
+
+.container-block-btns {
+}
+
+.container-buttons-crud {
+}
+
+.btn-crud {
+  font-size: 24px;
+  padding: 5px;
+  color: white;
+  border-radius: 10px;
+  width: 100px;
+  border: none;
+  cursor: pointer;
+}
+
+.edit {
+  background: rgb(0, 131, 57);
+  margin-right: 10px;
+  transition: all 0.4s ease;
+}
+
+.edit:hover {
+  background: rgb(1, 109, 48);
+}
+
+.delete {
+  background: tomato;
+  transition: all 0.4s ease;
+}
+.delete:hover {
+  background: rgb(253, 87, 58);
+}
+
+@media only screen and (min-width: 768px) {
+  .container-info-admin {
+    flex-direction: row;
+    justify-content: space-evenly;
+  }
+
+  .container-iput {
+    margin-bottom: 10px;
+  }
+
+  .container-block-info {
+    margin-bottom: 10px;
+  }
+
+  .btn-crud {
+    width: 160px;
+  }
+}

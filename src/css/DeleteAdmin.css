@@ -1,0 +1,44 @@
+.container-delete-admin {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(43, 43, 43, 0.75);
+  z-index: 20;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.container-delete {
+  background: tomato;
+  padding: 40px;
+  border-radius: 15px;
+}
+
+.btns-decisions {
+  display: flex;
+  justify-content: space-evenly;
+}
+.container-delete h2 {
+  margin-top: 0;
+  color: white;
+  letter-spacing: 2px;
+}
+
+[class^="btn-decision-"] {
+  font-size: 26px;
+  border-radius: 10px;
+  width: 70px;
+  background: white;
+  border: none;
+  letter-spacing: 2px;
+  font-weight: bold;
+  cursor: pointer;
+  transition: all 0.4s ease;
+}
+
+[class^="btn-decision-"]:hover {
+  background: rgb(241, 238, 238);
+}

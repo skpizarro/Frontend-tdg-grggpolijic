@@ -5,6 +5,7 @@ import Formulario from "./Formulario";
 import Ingreso from "./Ingreso";
 import SolicitudesPendientes from "./SolicitudesPendientes";
 import SolicitudesAprobadas from "./SolicitudesAprobadas";
+import ConfiguracionAdmin from "./ConfiguracionAdmin";
 
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 
@@ -24,8 +25,8 @@ const Header = ({
           switchNavAdmin={switchNavAdmin}
         />
         <Switch>
-          <Route path="/" exact component={Nosotros} />
-          <Route path="/Nosotros" component={Nosotros} />
+          {/* <Route exact path="/Nosotros" component={Nosotros} /> */}
+          <Route exact path="/" component={Nosotros} />
           <Route
             path="/Formulario"
             render={() => (
@@ -41,6 +42,7 @@ const Header = ({
             path="/Ingresar"
             render={() => <Ingreso switchNavAdmin={switchNavAdmin} />}
           />
+          <Route path="/Configuracion" render={() => <ConfiguracionAdmin />} />
           <Route
             path="/SolicitudesPendientes"
             component={SolicitudesPendientes}

@@ -1,0 +1,124 @@
+.container-form-create-admin {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(43, 43, 43, 0.75);
+  z-index: 20;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.button-close-admin {
+  position: absolute;
+  top: 100px;
+  right: 50px;
+  background: none;
+  border: none;
+  cursor: pointer;
+  border-radius: 5px;
+  color: black;
+  z-index: 2;
+  font-size: 36px;
+}
+
+.form-create-admin {
+  position: relative;
+  background: white;
+  padding: 5px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  min-height: 550px;
+  border-radius: 15px;
+  width: 400px;
+}
+
+.form-create-admin h2 {
+  text-transform: uppercase;
+  text-align: center;
+  margin-top: 0;
+  margin-left: 20px;
+  margin-right: 20px;
+  padding-bottom: 5px;
+  border-bottom: 2px solid black;
+}
+
+.container-inputs-form {
+  margin-bottom: 20px;
+  display: flex;
+  flex-direction: column;
+}
+
+.container-inputs-form label {
+  margin-bottom: 20px;
+}
+
+.container-inputs-form input {
+  background: none;
+  border: none;
+  box-shadow: 0px 1px 0px black;
+  border-radius: 5px 5px 0px 0px;
+  font-size: 28px;
+}
+
+.container-inputs-form input:focus {
+  outline: none;
+  background: lightgreen;
+  transition: all 0.4s ease-in;
+}
+
+[class^="btn-form-"] {
+  font-size: 26px;
+  margin-top: 25px;
+  border-radius: 10px;
+  color: white;
+  padding: 5px;
+  width: 140px;
+  letter-spacing: 2px;
+  border: none;
+  cursor: pointer;
+}
+
+.container-form-buttons {
+  width: 100%;
+  display: flex;
+  justify-content: space-evenly;
+}
+
+.btn-form-crear {
+  background: rgb(0, 131, 57);
+  transition: all 0.4s ease;
+}
+
+.btn-form-crear:hover {
+  background: rgb(1, 104, 45);
+}
+.btn-form-cancelar {
+  background: tomato;
+  transition: all 0.4s ease;
+}
+
+.btn-form-cancelar:hover {
+  background: rgb(255, 77, 45);
+}
+@media only screen and (min-width: 768px) {
+  .button-close-admin {
+    right: 190px;
+  }
+}
+
+@media only screen and (min-width: 1024px) {
+  .button-close-admin {
+    right: 320px;
+  }
+}
+
+@media only screen and (min-width: 1440px) {
+  .button-close-admin {
+    right: 570px;
+  }
+}

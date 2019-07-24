@@ -5,7 +5,8 @@ const NavUser = () => {
     <ul className="header__lista">
       <li>
         <NavLink
-          to="/Nosotros"
+          exact
+          to="/"
           activeClassName="active"
           className="header__lista-item"
         >

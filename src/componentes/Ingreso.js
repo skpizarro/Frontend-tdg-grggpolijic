@@ -26,7 +26,7 @@ class Ingreso extends Component {
     const { user: usuario, pass } = this.state;
 
     const user = {
-      idUsuario: Number(usuario),
+      idUsuario: usuario,
       passwordUsuario: pass
     };
     //acc: 1234  pass: ee2RR
@@ -58,8 +58,8 @@ class Ingreso extends Component {
       <form className="formulario" onSubmit={this.verifyCredentials}>
         <div className="form-container">
           <div className="contenedor">
-            <label>Usuario</label>
-            <input type="text" onChange={e => this.handleInput(e, "user")} />
+            <label>Identificación</label>
+            <input type="Number" onChange={e => this.handleInput(e, "user")} />
           </div>
           <div className="contenedor">
             <label>Contraseña</label>
