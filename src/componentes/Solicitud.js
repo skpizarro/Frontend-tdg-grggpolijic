@@ -16,10 +16,17 @@ const Solicitud = ({
   declineSolicitud,
   deleteAprobadas
 }) => {
+  const fullNameUser = nombre_usuario.split("undefined");
+  const name = fullNameUser[0];
+  const lastName = fullNameUser[1];
   return (
     <div className="card-solicitud">
-      <p>Número de solicitud:</p>
-      <span>{id_solicitud}</span>
+      <p>Nombre:</p>
+      <span>{name}</span>
+      <p>Identificación:</p>
+      <span>{id_usuario}</span>
+      <p>Email:</p>
+      <span>{email_usuario}</span>
       <p>Fecha de Visita:</p>
       <span>{fecha_visita}</span>
       {decision === "pendiente" ? (

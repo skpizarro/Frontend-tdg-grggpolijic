@@ -13,7 +13,6 @@ class SolicitudesPendientes extends Component {
   };
 
   getSolicitudesBD = async () => {
-    console.log("Carga de las solicitudes pendiente");
     try {
       const response = await axios.get(`${BASE_ENDPOINT}/api/solicitudes`);
       console.log(response.data.data);
@@ -34,7 +33,6 @@ class SolicitudesPendientes extends Component {
       const response = await axios.delete(
         `${BASE_ENDPOINT}/api/solicitudes/${id_solicitud}`
       );
-      console.log(response);
       this.getSolicitudesBD();
     } catch (error) {
       this.setState({
@@ -48,10 +46,11 @@ class SolicitudesPendientes extends Component {
       const response = await axios.post(`${BASE_ENDPOINT}/api/adm/approve`, {
         user
       });
-      console.log(response);
       this.getSolicitudesBD();
     } catch (error) {
-      console.log(error);
+      this.setState({
+        error: error.message
+      });
     }
   };
 

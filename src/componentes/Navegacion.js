@@ -5,7 +5,6 @@ import "../css/Navegacion.css";
 import image from "../assets/img/logo-negro.png";
 
 const Navegacion = ({ showNavAdmin, switchNavAdmin }) => {
-  console.log(`Desde navegacion, el valor del switch es, ${showNavAdmin}`);
   return (
     <nav className="navegacion">
       <div className="navegacion__img-container">

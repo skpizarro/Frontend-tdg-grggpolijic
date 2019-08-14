@@ -12,14 +12,14 @@ export default class App extends Component {
     showModal: false,
     acceptTerms: false,
     user: [],
-    showNavAdmin: false
+    showNavAdmin: false,
+    status: "",
+    error: ""
   };
 
   componentDidMount = () => {
-    console.log(this.state.showNavAdmin);
     const value =
       localStorage.getItem("adminCredentials") === "false" ? true : false;
-    console.log("value: ", value);
     this.setState({
       showNavAdmin: value
     });
@@ -33,7 +33,6 @@ export default class App extends Component {
   };
 
   switchNavAdmin = e => {
-    console.log("llega al componente app");
     localStorage.setItem("adminCredentials", this.state.showNavAdmin);
     this.setState(prevState => ({
       ...prevState,
@@ -66,7 +65,9 @@ export default class App extends Component {
         }
       )
       .then(function(response) {
-        console.log("respuesta", response);
+        this.setState({
+          status: response.data.ok
+        });
       })
       .catch(function(error) {
         console.log(error);

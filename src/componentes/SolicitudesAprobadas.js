@@ -11,7 +11,6 @@ export default class SolicitudesAprobadas extends Component {
   };
 
   getSolicitudesBD = async () => {
-    console.log("se cargan las solicitudes aprobadas");
     try {
       const respone = await Axios.get(`${BASE_ENDPOINT}/api/adm/aprobadas`);
       this.setState({
@@ -31,7 +30,6 @@ export default class SolicitudesAprobadas extends Component {
       const response = await Axios.delete(
         `${BASE_ENDPOINT}/api/adm/aprobadas/${id_solicitud}`
       );
-      console.log(response);
       this.getSolicitudesBD();
     } catch (error) {
       this.setState({

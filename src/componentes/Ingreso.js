@@ -31,20 +31,17 @@ class Ingreso extends Component {
     };
     //acc: 1234  pass: ee2RR
     try {
-      const response = await axios.post(`${BASE_ENDPOINT}/api/login`, { user }); //aqui me debe devolver un true o false dependiendo si la info es correcta
-      console.log(response);
+      const response = await axios.post(`${BASE_ENDPOINT}/api/login`, { user });
       if (response.data.ok) {
         //Modificar variable admin del componente app para mostrar otro nav
         //Llevar al componente Solicitudes.js
         this.setState({
           errorStatus: false
         });
-        console.log("logeo exitoso");
         this.props.switchNavAdmin(e);
         this.props.history.push("/SolicitudesPendientes");
       }
     } catch (error) {
-      console.log(error);
       this.setState({
         error: "Usuario y/o Contraseña no válidos",
         errorStatus: true

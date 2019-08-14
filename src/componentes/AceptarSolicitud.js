@@ -6,6 +6,7 @@ const AceptarSolicitud = ({
   id_solicitud,
   id_usuario,
   nombre_usuario,
+  apellido_usuario,
   email_usuario,
   tipo_usuario,
   fecha_visita,
