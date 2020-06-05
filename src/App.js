@@ -1,21 +1,27 @@
 import Header from "./componentes/Header";
 import Footer from "./componentes/Footer";
 import FormularioModal from "./componentes/FormularioModal";
-import { BASE_ENDPOINT } from "./constants";
+import { URL_BASE } from "./constants";
 import axios from "axios";
 import "./css/App.css";
 
 import React, { Component } from "react";
 
+
 export default class App extends Component {
   state = {
     showModal: false,
     acceptTerms: false,
-    user: [],
+    user:[],
+    zonas:"",
     showNavAdmin: false,
     status: "",
-    error: ""
+    error: "",
+    solicitudZonas:{},
+    authAdmin:""
   };
+
+  
 
   componentDidMount = () => {
     const value =
@@ -42,8 +48,9 @@ export default class App extends Component {
 
   handleSubmit = (e, user) => {
     this.setState({
-      user: user
+      user:user
     });
+    console.log(this.state.user);
     this.handleToggleModal(e);
   };
 
@@ -53,33 +60,49 @@ export default class App extends Component {
     });
   };
 
-  sendInfo = (e, user) => {
-    e.preventDefault();
+  setCheckZona = z =>{
+    this.setState({zonas:z})
+  }
 
-    axios
-      .post(
-        `${BASE_ENDPOINT}/api/generateqr`,
-        { user },
-        {
-          headers: { "Content-Type": "application/json" }
-        }
-      )
-      .then(function(response) {
-        this.setState({
-          status: response.data.ok
-        });
-      })
-      .catch(function(error) {
-        console.log(error);
-      });
+
+  sendInfo = async (e, user) => {
+    e.preventDefault();
+    let resp ="";
+    await axios
+    .post(
+      `${URL_BASE}/api/SolicitudIngreso`,
+      { user },
+      {
+        headers: { "Content-Type": "application/json" }
+      }
+    )
+    .then(function(response) {
+      console.log(response)
+      resp = response;
+    })
+    .catch(function(error) {
+      console.log(error);
+      resp = error;
+    });
+    
+    this.setState({
+      status: resp
+    });
+
     this.setState({
       acceptTerms: true
     });
+
+    
+    
     this.handleToggleModal(e);
+
+    
   };
 
   render() {
-    const { showModal, showNavAdmin, user, acceptTerms } = this.state;
+    const { showModal, showNavAdmin, user, acceptTerms, status } = this.state;
+    
     const switchClassModal = showModal ? "active-body" : "no-active-body";
     const body = document.querySelector("#no-active");
     if (switchClassModal === "active") {
@@ -103,7 +126,10 @@ export default class App extends Component {
           showNavAdmin={showNavAdmin}
           switchNavAdmin={this.switchNavAdmin}
           acceptTerms={acceptTerms}
+          status={status}
           handleSwitchTerms={this.handleSwitchTerms}
+          updateAuthAdmin={this.handleAuthAdmin}
+         
         />
         <Footer />
       </div>

@@ -76,9 +76,18 @@
   border-radius: 5px;
 }
 
+.PrivateSwitchBase-checked-20.Mui-checked.MuiIconButton-colorPrimary{
+  color: rgb(212, 174, 1);
+}
+span.MuiIconButton-label:hover {
+  color: rgb(212, 174, 1);
+}
+
 .formulario__boton:hover {
   background: rgb(212, 174, 1);
 }
+
+
 
 .formulario__boton:focus {
   outline: none;

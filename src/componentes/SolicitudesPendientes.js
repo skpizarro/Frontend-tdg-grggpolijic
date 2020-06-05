@@ -1,25 +1,37 @@
 import React, { Component } from "react";
 import axios from "axios";
-import { BASE_ENDPOINT } from "../constants";
+import { URL_BASE } from "../constants";
 import Solicitud from "./Solicitud";
 import "../css/SolicitudesPendientes.css";
+import "../css/Progress.css";
 import Mensaje from "./Mensaje";
 import { withRouter } from "react-router-dom";
+import CircularProgress from '@material-ui/core/CircularProgress';
+
+
 
 class SolicitudesPendientes extends Component {
-  state = {
-    solicitudes: [],
-    error: ""
-  };
+  constructor(){
+    super();
+    this.state = {
+      zonas: [],
+      solicitudes:false,
+      error: ""
+    };
+
+    this.getZonas();
+  }
+  
 
   getSolicitudesBD = async () => {
     try {
-      const response = await axios.get(`${BASE_ENDPOINT}/api/solicitudes`);
+      const response = await axios.get(`${URL_BASE}/api/solicitudes`);
       console.log(response.data.data);
       this.setState({
         solicitudes: response.data.data,
         error: ""
       });
+
     } catch (error) {
       this.setState({
         error: error.message,
@@ -28,10 +40,11 @@ class SolicitudesPendientes extends Component {
     }
   };
 
-  deleteSolicitud = async id_solicitud => {
+  denySolicitud = async (dataUser) => {
+    console.log("authAdmin",dataUser.authAdmin)
     try {
-      const response = await axios.delete(
-        `${BASE_ENDPOINT}/api/solicitudes/${id_solicitud}`
+        await axios.put(
+        `${URL_BASE}/api/solicitudes`,{dataUser}
       );
       this.getSolicitudesBD();
     } catch (error) {
@@ -41,10 +54,25 @@ class SolicitudesPendientes extends Component {
     }
   };
 
-  acceptSolicitud = async user => {
+getZonas=()=>{
+   axios.get(`${URL_BASE}/api/Zonas`).then(response=>{
+    this.setState({
+      zonas: response.data.data,
+      error: ""
+    });
+   })
+      
+  .catch(e =>{
+    console.log("Error")
+    this.setState({error:e.message})
+  })
+}
+
+  acceptSolicitud = async dataUser => {
+    console.log("authAdmin",dataUser.authAdmin)
     try {
-      const response = await axios.post(`${BASE_ENDPOINT}/api/adm/approve`, {
-        user
+        await axios.put(`${URL_BASE}/api/adm/approve`, {
+        dataUser
       });
       this.getSolicitudesBD();
     } catch (error) {
@@ -54,17 +82,40 @@ class SolicitudesPendientes extends Component {
     }
   };
 
-  declineSolicitud = id_solicitud => {
-    this.deleteSolicitud(id_solicitud);
+  specialPermission = async dataUser => {
+    console.log("authAdmin",dataUser.authAdmin)
+    try {
+        await axios.put(`${URL_BASE}/api/adm/specialPermission`, {
+        dataUser
+      });
+      this.getSolicitudesBD();
+    } catch (error) {
+      this.setState({
+        error: error.message
+      });
+    }
   };
+
+  
 
   componentDidMount = () => {
     this.getSolicitudesBD();
   };
 
+  
+  
   render() {
-    const { solicitudes } = this.state;
-    if (solicitudes.length === 0) {
+    const { solicitudes,zonas } = this.state;
+    const {authAdmin} = this.props;
+
+    if(!solicitudes){
+      return (
+        
+          <div class="spinner">
+          <CircularProgress className="prog" size={100} color={"rgb(212, 174, 1)"}/> 
+          </div>
+          ) 
+    }else if (solicitudes.length === 0) {
       return (
         <Mensaje
           mensaje="¡No existen solicitudes pendientes!"
@@ -74,11 +125,13 @@ class SolicitudesPendientes extends Component {
     }
     return (
       <div className="contenedor-solicitudes">
+        
         {solicitudes.map(
           ({
             id_solicitud,
             id_usuario,
             nombre_usuario,
+            apellido_usuario,
             email_usuario,
             tipo_usuario,
             fecha_visita,
@@ -90,15 +143,20 @@ class SolicitudesPendientes extends Component {
               id_solicitud={id_solicitud}
               id_usuario={id_usuario}
               nombre_usuario={nombre_usuario}
+              apellido_usuario={apellido_usuario}
               email_usuario={email_usuario}
               tipo_usuario={tipo_usuario}
               fecha_visita={fecha_visita}
               motivo_visita={motivo_visita}
               acceptSolicitud={this.acceptSolicitud}
-              declineSolicitud={this.declineSolicitud}
+              denySolicitud={this.denySolicitud}
+              specialPermission={this.specialPermission}
+              zonas={zonas}
+              authAdmin={authAdmin}
             />
           )
         )}
+        
       </div>
     );
   }

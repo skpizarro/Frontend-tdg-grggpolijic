@@ -1,0 +1,9 @@
+
+.spinner {
+    height: 150px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    size: 100;
+    color:rgb(212, 174, 1);
+  }

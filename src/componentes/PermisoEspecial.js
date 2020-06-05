@@ -1,8 +1,8 @@
 import React from "react";
-import "../css/AceptarSolicitud.css";
+import "../css/PermisoEspecial.css";
 
-const AceptarSolicitud = ({
-  acceptSolicitud,
+const PermisoEspecial = ({
+  specialPermission,
   id_solicitud,
   id_usuario,
   nombre_usuario,
@@ -13,7 +13,7 @@ const AceptarSolicitud = ({
   zonasSolicitadas,
   zonasAprovadas,
   observaciones,
-  authAdmin
+  special,authAdmin
 }) => {
   const dataUser = {
     id_solicitud,
@@ -26,17 +26,18 @@ const AceptarSolicitud = ({
     zonasSolicitadas,
     zonasAprovadas,
     observaciones,
+    special,
     authAdmin
     
   };
   return (
     <button
-      className="decision-button-accept"
-      onClick={() => acceptSolicitud(dataUser)}
+      className="decision-button-accept-special"
+      onClick={() => specialPermission(dataUser)}
     >
-      Aceptar
+     Especial
     </button>
   );
 };
 
-export default AceptarSolicitud;
+export default PermisoEspecial;

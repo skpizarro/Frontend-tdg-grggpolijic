@@ -1,5 +1,6 @@
 import React from "react";
 import { NavLink } from "react-router-dom";
+import MenuZonas from './visitas/MenuZonas'
 
 const NavAdmin = ({ switchNavAdmin }) => {
   return (
@@ -21,6 +22,9 @@ const NavAdmin = ({ switchNavAdmin }) => {
         >
           Solicitudes Aprobadas
         </NavLink>
+      </li>
+      <li className="header__lista-item">
+          <MenuZonas />
       </li>
       <li>
         <NavLink

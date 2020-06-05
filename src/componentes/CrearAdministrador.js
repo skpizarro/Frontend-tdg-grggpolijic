@@ -23,7 +23,7 @@ const CrearAdmin = ({
               type="number"
               name="identificacion"
               className="input_identificacion"
-              onChange={e => handlerInpunt(e, "id_usuario")}
+              onChange={e => handlerInpunt(e, "id_administrador")}
               required
             />
           </div>
@@ -32,8 +32,8 @@ const CrearAdmin = ({
             <input
               type="text"
               name="usuario"
-              className="input_usuario"
-              onChange={e => handlerInpunt(e, "nombre_usuario")}
+              className="input_administrador"
+              onChange={e => handlerInpunt(e, "nombre_administrador")}
               required
             />
           </div>
@@ -43,7 +43,7 @@ const CrearAdmin = ({
               type="text"
               name="contraseña"
               className="input_contraseña"
-              onChange={e => handlerInpunt(e, "clave_usuario")}
+              onChange={e => handlerInpunt(e, "clave_administrador")}
               required
             />
           </div>
@@ -72,7 +72,7 @@ const CrearAdmin = ({
               type="text"
               name="usuario"
               className="input_usuario"
-              onChange={e => handlerInpunt(e, "nombre_usuario")}
+              onChange={e => handlerInpunt(e, "nombre_administrador")}
               required
             />
           </div>
@@ -82,7 +82,7 @@ const CrearAdmin = ({
               type="text"
               name="contraseña"
               className="input_contraseña"
-              onChange={e => handlerInpunt(e, "clave_usuario")}
+              onChange={e => handlerInpunt(e, "clave_administrador")}
               required
             />
           </div>

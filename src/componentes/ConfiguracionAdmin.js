@@ -1,11 +1,13 @@
 import React, { Component } from "react";
 import CrearAdmin from "./CrearAdministrador";
-import { BASE_ENDPOINT } from "../constants";
+import { URL_BASE } from "../constants";
 import axios from "axios";
 import AdminInfo from "./AdminInfo";
 import "../css/ConfiguracionAdmin.css";
 import DeleteAdmin from "./DeleteAdmin";
 import ErrorDeleteAdmin from "./ErrorDeleteAdmin";
+import "../css/Progress.css";
+import CircularProgress from '@material-ui/core/CircularProgress';
 
 export default class ConfiguracionAdmin extends Component {
   state = {
@@ -13,9 +15,9 @@ export default class ConfiguracionAdmin extends Component {
     showCreateAdmin: false,
     showEditAdmin: false,
     showDeleteAdmin: false,
-    id_usuario: "",
-    nombre_usuario: "",
-    clave_usuario: "",
+    id_administrador: "",
+    nombre_administrador: "",
+    clave_administrador: "",
     error: "",
     isError: false
   };
@@ -27,11 +29,11 @@ export default class ConfiguracionAdmin extends Component {
     }));
   };
 
-  handleShowEditAdmin = (e, id_usuario = "") => {
+  handleShowEditAdmin = (e, id_administrador = "") => {
     this.setState(prevState => ({
       ...prevState,
       showEditAdmin: !prevState.showEditAdmin,
-      id_usuario
+      id_administrador
     }));
   };
 
@@ -42,17 +44,17 @@ export default class ConfiguracionAdmin extends Component {
     }));
   };
 
-  handleShowDeleteAdmin = (e, id_usuario = "") => {
+  handleShowDeleteAdmin = (e, id_administrador = "") => {
     this.setState(prevState => ({
       ...prevState,
       showDeleteAdmin: !prevState.showDeleteAdmin,
-      id_usuario
+      id_administrador
     }));
   };
 
   getAllAdminBD = async () => {
     try {
-      const response = await axios.get(`${BASE_ENDPOINT}/admin/crud`);
+      const response = await axios.get(`${URL_BASE}/admin/crud`);
       this.setState({
         administradores: response.data.data
       });
@@ -67,13 +69,13 @@ export default class ConfiguracionAdmin extends Component {
   crearAdminBD = async e => {
     e.preventDefault();
     const user = {
-      idUsuario: this.state.id_usuario,
-      nombresUsuario: this.state.nombre_usuario,
-      passwordUsuario: this.state.clave_usuario
+      idUsuario: this.state.id_administrador,
+      nombresUsuario: this.state.nombre_administrador,
+      passwordUsuario: this.state.clave_administrador
     };
 
     try {
-      const response = await axios.post(`${BASE_ENDPOINT}/admin/crud`, {
+        await axios.post(`${URL_BASE}/admin/crud`, {
         user
       });
       this.getAllAdminBD();
@@ -89,8 +91,8 @@ export default class ConfiguracionAdmin extends Component {
     e.preventDefault();
     const { idUsuario } = user;
     try {
-      const response = await axios.put(
-        `${BASE_ENDPOINT}/admin/crud/${idUsuario}`,
+        await axios.put(
+        `${URL_BASE}/admin/crud/${idUsuario}`,
         {
           user
         }
@@ -104,12 +106,12 @@ export default class ConfiguracionAdmin extends Component {
     this.handleShowDeleteAdmin(e);
   };
 
-  deleteAdminBD = async (e, id_usuario) => {
+  deleteAdminBD = async (e, id_administrador) => {
     const { administradores } = this.state;
     try {
       if (administradores.length > 1) {
-        const response = await axios.delete(
-          `${BASE_ENDPOINT}/admin/crud/${id_usuario}`
+          await axios.delete(
+          `${URL_BASE}/admin/crud/${id_administrador}`
         );
         this.setState({
           isError: false
@@ -145,18 +147,30 @@ export default class ConfiguracionAdmin extends Component {
       showCreateAdmin,
       showEditAdmin,
       showDeleteAdmin,
-      id_usuario,
-      nombre_usuario,
-      clave_usuario,
+      id_administrador,
+      nombre_administrador,
+      clave_administrador,
       isError
     } = this.state;
 
     const user = {
-      idUsuario: id_usuario,
-      nombresUsuario: nombre_usuario,
-      passwordUsuario: clave_usuario
+      idUsuario: id_administrador,
+      nombresUsuario: nombre_administrador,
+      passwordUsuario: clave_administrador
     };
+
+    if(administradores.length === 0){
+      return (
+        
+          <div class="spinner">
+          <CircularProgress className="prog" size={100} color={"rgb(212, 174, 1)"}/> 
+          </div>
+          ) 
+    }else
+
     return (
+
+      
       <div className="container-configuracion">
         <div className="container-create-admin">
           {/* Componente boton crear admin */}
@@ -172,9 +186,9 @@ export default class ConfiguracionAdmin extends Component {
               mensaje="Crear Administrador"
               handleShowEntrante={this.handleShowCreateAdmin}
               handlerInpunt={this.handlerInpunt}
-              id_usuario={id_usuario}
-              nombre_usuario={nombre_usuario}
-              clave_usuario={clave_usuario}
+              id_administrador={id_administrador}
+              nombre_administrador={nombre_administrador}
+              clave_administrador={clave_administrador}
               funcionEntrante={this.crearAdminBD}
             />
           )}
@@ -182,12 +196,12 @@ export default class ConfiguracionAdmin extends Component {
         <div className="container-show-admin-info">
           {/* Componente  Mostrar todos los admin*/}
           {administradores.map(
-            ({ id_usuario, nombre_usuario, clave_usuario }) => (
+            ({ id_administrador, nombre_administrador, clave_administrador }) => (
               <AdminInfo
-                key={id_usuario}
-                id_usuario={id_usuario}
-                nombre_usuario={nombre_usuario}
-                clave_usuario={clave_usuario}
+                key={id_administrador}
+                id_administrador={id_administrador}
+                nombre_administrador={nombre_administrador}
+                clave_administrador={clave_administrador}
                 handleShowEditAdmin={this.handleShowEditAdmin}
                 handleShowDeleteAdmin={this.handleShowDeleteAdmin}
               />
@@ -199,9 +213,9 @@ export default class ConfiguracionAdmin extends Component {
               mensaje="Editar Administrador"
               handleShowEntrante={this.handleShowEditAdmin}
               handlerInpunt={this.handlerInpunt}
-              id_usuario={id_usuario}
-              nombre_usuario={nombre_usuario}
-              clave_usuario={clave_usuario}
+              id_administrador={id_administrador}
+              nombre_administrador={nombre_administrador}
+              clave_administrador={clave_administrador}
               funcionEntrante={this.editAdminBD}
               user={user}
             />
@@ -209,7 +223,7 @@ export default class ConfiguracionAdmin extends Component {
           {showDeleteAdmin && (
             <DeleteAdmin
               mensaje="¿Está seguro?"
-              id_usuario={id_usuario}
+              id_administrador={id_administrador}
               handleShowDeleteAdmin={this.handleShowDeleteAdmin}
               deleteAdminBD={this.deleteAdminBD}
             />

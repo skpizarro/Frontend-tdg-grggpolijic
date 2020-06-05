@@ -24,6 +24,25 @@ a {
   text-decoration: none;
 }
 
+#root > div > header > nav > ul > li.header__lista-item > div > div > div{
+  position: absolute;
+  z-index: 3;
+  
+}
+
+#root > div > header > nav > ul > li.header__lista-item > div > div > div > div{
+  background: rgb(1, 122, 54);
+}
+
+a.MuiButtonBase-root{
+  font-size: 18px;
+  color:white;
+}
+
+a.MuiButtonBase-root:hover{
+  color: rgb(234, 193, 0);
+}
+
 /* Estilos para las className */
 
 .header__lista {
@@ -61,12 +80,33 @@ a {
 .header__lista-item:hover {
   color: rgb(234, 193, 0);
 }
+span.MuiButton-label:hover{
+  color: rgb(234, 193, 0);
+}
+
+
+
+span.MuiButton-label{
+  margin-right: 0;
+  padding-top: 15px;
+  padding-bottom: 5px;
+  position: relative;
+  text-transform: uppercase;
+  color: white;
+  letter-spacing: 1px;
+  font-size: 19px;
+  
+}
 
 .active {
   color: rgb(234, 193, 0);
   font-weight: bold;
 }
 
+span.active {
+  color: rgb(234, 193, 0);
+  font-weight: bold;
+}
 @media only screen and (min-width: 768px) {
   img {
     width: 600px;
@@ -80,7 +120,7 @@ a {
 
   .header__lista-item {
     margin-right: 13px;
-    padding-top: 20px;
+    padding-top: 1px;
     padding-bottom: 5px;
     position: relative;
   }
@@ -93,7 +133,7 @@ a {
 @media only screen and (min-width: 1024px) {
   .header__lista-item {
     margin-right: 60px;
-    padding-top: 20px;
+    padding-top: 1px;
     padding-bottom: 5px;
     position: relative;
   }
@@ -116,7 +156,7 @@ a {
   }
   .header__lista-item {
     margin-right: 100px;
-    padding-top: 20px;
+    padding-top: 1px;
     padding-bottom: 5px;
     position: relative;
   }

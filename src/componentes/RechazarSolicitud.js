@@ -3,25 +3,50 @@ import "../css/RechazarSolicitud.css";
 
 const RechazarSolicitud = ({
   origen,
-  declineSolicitud,
+  denySolicitud,
+  cancelSolicitud,
   id_solicitud,
-  deleteAprobadas
+  id_usuario,
+  nombre_usuario,
+  apellido_usuario,
+  email_usuario,
+  tipo_usuario,
+  fecha_visita,
+  estado,
+  zonasSolicitadas,
+  observaciones,
+  authAdmin
+  
 }) => {
+  const dataUser={
+    id_solicitud,
+    id_usuario,
+    nombre_usuario,
+    apellido_usuario,
+    email_usuario,
+    tipo_usuario,
+    fecha_visita,
+    estado,
+    zonasSolicitadas,
+    observaciones,
+    authAdmin
+
+  }
   return (
     <div>
       {origen === "solicitud" ? (
         <button
           className="decision-button-refuse"
-          onClick={() => declineSolicitud(id_solicitud)}
+          onClick={() => denySolicitud(dataUser)}
         >
           Rechazar
         </button>
       ) : (
         <button
           className="decision-button-refuse"
-          onClick={() => deleteAprobadas(id_solicitud)}
+          onClick={() => cancelSolicitud(dataUser)}
         >
-          Eliminar
+          Cancelar
         </button>
       )}
     </div>

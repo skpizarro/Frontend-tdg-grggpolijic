@@ -8,6 +8,15 @@
   margin: 35px 0;
 }
 
+.PrivateSwitchBase-checked-20.Mui-checked.MuiIconButton-colorPrimary{
+  color: rgb(212, 174, 1);
+}
+span.MuiIconButton-label:hover {
+  color: rgb(212, 174, 1);
+}
+.MuiCheckbox-colorPrimary.Mui-checked{
+  color: rgb(212, 174, 1);
+}
 @media only screen and (min-width: 768px) {
   .contenedor-solicitudes {
     flex-direction: row;

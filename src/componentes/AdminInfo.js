@@ -2,9 +2,9 @@ import React from "react";
 import "../css/AdminInfo.css";
 
 const AdminInfo = ({
-  id_usuario,
-  nombre_usuario,
-  clave_usuario,
+  id_administrador,
+  nombre_administrador,
+  clave_administrador,
   handleShowEditAdmin,
   handleShowDeleteAdmin
 }) => {
@@ -13,15 +13,15 @@ const AdminInfo = ({
       <div className="container-block-info">
         <div className="container-iput">
           <label htmlFor="">Identificación: </label>
-          <span>{id_usuario}</span>
+          <span>{id_administrador}</span>
         </div>
         <div className="container-iput">
           <label htmlFor="">Usuario: </label>
-          <span>{nombre_usuario}</span>
+          <span>{nombre_administrador}</span>
         </div>
         <div className="container-iput">
           <label htmlFor="">Contraseña: </label>
-          <span>{clave_usuario}</span>
+          <span>{clave_administrador}</span>
         </div>
       </div>
       <div className="container-block-btns">
@@ -35,7 +35,7 @@ const AdminInfo = ({
           </button>
           <button
             className="btn-crud delete"
-            onClick={e => handleShowDeleteAdmin(e, id_usuario)}
+            onClick={e => handleShowDeleteAdmin(e, id_administrador)}
           >
             Eliminar
           </button>

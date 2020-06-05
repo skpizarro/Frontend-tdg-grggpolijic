@@ -23,13 +23,19 @@
   font-size: 32px;
 }
 
+.container-mensaje-aviso h2 {
+  font-size: 20px;
+  font-weight: lighter;
+  color: rgba(255, 255, 255, 0.3)
+}
+
 .container-mensaje-error {
   background: rgba(255, 99, 71, 1);
   min-height: 50px;
 }
 
 .container-mensaje-error h2 {
-  font-size: 18px;
+  font-size: 32px;
 }
 
 .container-mensaje-solicitudes {

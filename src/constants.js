@@ -1,1 +1,1 @@
-export const BASE_ENDPOINT =  'https://access-control-poli.herokuapp.com';
+export const URL_BASE = 'https://back-tdg-grggpolijic.herokuapp.com';

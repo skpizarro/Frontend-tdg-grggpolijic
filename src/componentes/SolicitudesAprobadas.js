@@ -1,18 +1,29 @@
 import React, { Component } from "react";
 import Axios from "axios";
-import { BASE_ENDPOINT } from "../constants";
+import { URL_BASE } from "../constants";
 import Solicitud from "./Solicitud";
 import Mensaje from "./Mensaje";
+import "../css/Progress.css";
+import CircularProgress from '@material-ui/core/CircularProgress';
 
 export default class SolicitudesAprobadas extends Component {
-  state = {
-    solicitudes: [],
-    error: ""
-  };
+  
+  constructor(){
+    super();
+    this.state = {
+      zonas: [],
+      solicitudes:false,
+      error: ""
+    };
+
+    this.getZonas();
+  }
+  
+  
 
   getSolicitudesBD = async () => {
     try {
-      const respone = await Axios.get(`${BASE_ENDPOINT}/api/adm/aprobadas`);
+      const respone = await Axios.get(`${URL_BASE}/api/adm/aprobadas`);
       this.setState({
         solicitudes: respone.data.data,
         error: ""
@@ -25,10 +36,25 @@ export default class SolicitudesAprobadas extends Component {
     }
   };
 
-  deleteAprobadas = async id_solicitud => {
+  getZonas=async()=>{
+    await Axios.get(`${URL_BASE}/api/Zonas`).then(response=>{
+     this.setState({
+       zonas: response.data.data,
+       error: ""
+     });
+    })
+       
+   .catch(e =>{
+     console.log("Error")
+     this.setState({error:e.message})
+   })
+ }
+
+  cancelSolicitud = async (dataUser) => {
+    console.log("authAdmin",dataUser.authAdmin)
     try {
-      const response = await Axios.delete(
-        `${BASE_ENDPOINT}/api/adm/aprobadas/${id_solicitud}`
+        await Axios.put(
+        `${URL_BASE}/api/adm/Cancel`,{dataUser}
       );
       this.getSolicitudesBD();
     } catch (error) {
@@ -42,7 +68,17 @@ export default class SolicitudesAprobadas extends Component {
     this.getSolicitudesBD();
   };
   render() {
-    const { solicitudes } = this.state;
+    const { solicitudes,zonas } = this.state;
+    const {authAdmin} = this.props;
+
+    if(!solicitudes){
+      return (
+        
+          <div class="spinner">
+          <CircularProgress className="prog" size={100} color={"rgb(212, 174, 1)"}/> 
+          </div>
+          ) 
+    }else
     if (solicitudes.length === 0) {
       return (
         <Mensaje
@@ -55,25 +91,31 @@ export default class SolicitudesAprobadas extends Component {
       <div className="contenedor-solicitudes">
         {solicitudes.map(
           ({
-            id_aprobada,
+            id_solicitud,
             id_usuario,
             nombre_usuario,
+            apellido_usuario,
             email_usuario,
             tipo_usuario,
             fecha_visita,
-            motivo_visita
+            motivo_visita,
+            estado
           }) => (
             <Solicitud
               decision="aprobada"
-              key={id_aprobada}
-              id_solicitud={id_aprobada}
+              key={id_solicitud}
+              id_solicitud={id_solicitud}
               id_usuario={id_usuario}
               nombre_usuario={nombre_usuario}
+              apellido_usuario={apellido_usuario}
               email_usuario={email_usuario}
               tipo_usuario={tipo_usuario}
               fecha_visita={fecha_visita}
               motivo_visita={motivo_visita}
-              deleteAprobadas={this.deleteAprobadas}
+              cancelSolicitud={this.cancelSolicitud}
+              estado={estado}
+              zonas={zonas}
+              authAdmin={authAdmin}
             />
           )
         )}

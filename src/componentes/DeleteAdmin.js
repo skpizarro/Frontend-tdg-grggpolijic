@@ -3,7 +3,7 @@ import "../css/DeleteAdmin.css";
 
 const DeleteAdmin = ({
   mensaje,
-  id_usuario,
+  id_administrador,
   handleShowDeleteAdmin,
   deleteAdminBD
 }) => {
@@ -14,7 +14,7 @@ const DeleteAdmin = ({
         <div className="btns-decisions">
           <button
             className="btn-decision-si"
-            onClick={e => deleteAdminBD(e, id_usuario)}
+            onClick={e => deleteAdminBD(e, id_administrador)}
           >
             Si
           </button>

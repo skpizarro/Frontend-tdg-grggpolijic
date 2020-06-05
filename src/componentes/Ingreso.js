@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import Mensaje from "./Mensaje";
 import "../css/Ingreso.css";
 import axios from "axios";
-import { BASE_ENDPOINT } from "../constants";
+import { URL_BASE } from "../constants";
 import { withRouter } from "react-router-dom";
 
 class Ingreso extends Component {
@@ -22,26 +22,39 @@ class Ingreso extends Component {
   };
 
   verifyCredentials = async e => {
+    //const{updateAuthAdmin}= this.props;
     e.preventDefault();
-    const { user: usuario, pass } = this.state;
+    const { user: admin, pass } = this.state;
 
     const user = {
-      idUsuario: usuario,
-      passwordUsuario: pass
+      idAdmin: admin,
+      passwordAdmin: pass
     };
-    //acc: 1234  pass: ee2RR
+
     try {
-      const response = await axios.post(`${BASE_ENDPOINT}/api/login`, { user });
+      const response = await axios.post(`${URL_BASE}/api/login`, { user });
       if (response.data.ok) {
         //Modificar variable admin del componente app para mostrar otro nav
         //Llevar al componente Solicitudes.js
+       
+        //se guarda el id en el almacenamiento local
+        localStorage.setItem('idAdmin',response.data.admin);
+
+
         this.setState({
           errorStatus: false
         });
+        
         this.props.switchNavAdmin(e);
         this.props.history.push("/SolicitudesPendientes");
+
+
+        //mandamos el id del admin al header para usarlo en el momento de gestionar las solicitudes
+        //updateAuthAdmin(response.data.admin);        
+
       }
     } catch (error) {
+      console.log(error);
       this.setState({
         error: "Usuario y/o Contraseña no válidos",
         errorStatus: true
@@ -51,6 +64,7 @@ class Ingreso extends Component {
 
   render() {
     const { error, errorStatus } = this.state;
+    
     return (
       <form className="formulario" onSubmit={this.verifyCredentials}>
         <div className="form-container">
